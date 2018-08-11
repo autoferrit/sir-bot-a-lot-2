@@ -20,18 +20,13 @@ python:
   - nightly
 
 install:
-  - pip install .[full]
-  - pip install coveralls
+  - pipenv install --system --deploy --dev
 
 before_script:
   - psql -c 'create database sirbot;' -U postgres
 
 script:
-  - python setup.py flake8
-  - python setup.py test --addopts "--postgres"
-  - python setup.py doc
-  - python setup.py sdist
-  - python setup.py bdist_wheel
+  - pipenv run tests/test.sh postgres
 
 after_success:
   - coveralls
