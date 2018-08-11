@@ -6,7 +6,7 @@ flake8 .
 black --check --diff .
 isort --recursive --check-only .
 
-if [[ $1 = postgres ]];
+if [ $1 = "postgres" ];
 then
     pytest test --verbose --cov --postgres
 else
